@@ -5,6 +5,8 @@ import {ProfileInfo} from "./ProfelInfo/ProfileInfo";
 
 
 export const Profile = () => {
+
+
     return (
         <div>
             <ProfileInfo />

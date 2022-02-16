@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './Post.module.css';
 
-type PropsPostType ={
-    message:string
-    likesCount:string
+type PropsPostType = {
+    message: string
+    likesCount: string
 }
 
 export const Post: React.FC<PropsPostType> = (props) => {
@@ -11,7 +11,9 @@ export const Post: React.FC<PropsPostType> = (props) => {
         <div className={s.item}>
             <img alt='pic' src='https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'/>
             {props.message}
-            {props.likesCount}
+            <div>
+                <span>like  </span>{props.likesCount}
+            </div>
         </div>
     );
 }
