@@ -1,57 +1,62 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import {TaskPropsType, Todolist} from "./Todolist";
-import {v1} from "uuid";
+import {Header} from "./components/Header/Header";
+import {Navbar} from "./components/Navbar/Navbar";
+import {Profile} from "./components/Profile/Profile";
+import {Dialogs} from "./components/Dialogs/Dialogs";
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {News} from "./components/News/News";
+import {Settings} from "./components/Settings/Settings";
+import {Music} from "./components/Music/Music";
 
-export type FilterValuesType = 'all' | 'completed' | 'active';
+type DialogsPropsType = {
+    id: number
+    name: string
+}
+type MessagesPropsType = {
+    id: number
+    message: string
+}
+type PostsPropsType = {
+    id: number
+    message: string
+    likesCount: string
+}
+type ProfilePagePropsType = {
+    posts: Array<PostsPropsType>
+}
+type MessagesPagePropsType = {
+    messages:Array<MessagesPropsType>
+    dialogs: Array<DialogsPropsType>
+}
+type StateContainPropsType = {
+    profilePage:ProfilePagePropsType
+    dialogsPage:MessagesPagePropsType
+}
+type StatePropsType = {
+    state:StateContainPropsType
+}
 
-function App() {
-
- let [tasks, setTasks] = useState<Array<TaskPropsType>>([
-     { id: v1(), title: "HTML&CSS", isDone: true },
-     { id: v1(), title: "JS", isDone: true },
-     { id: v1(), title: "ReactJS", isDone: false },
-     { id: v1(), title: "Redux", isDone: true }
- ])
-
-    let[filter,setFilter] = useState<FilterValuesType>('all') //active
-
-    console.log('---> tasks',tasks);
-    let tasksForTodolist = tasks; //4
-
-    if(filter==='completed'){
-        tasksForTodolist = tasks.filter(el => el.isDone === true);
-    }
-    if(filter==='active'){
-        tasksForTodolist = tasks.filter(el => el.isDone === false);//1
-    }
-    console.log('---> tasksForTodolist',tasksForTodolist);
-    function changeFilter (value:FilterValuesType){
-        setFilter(value);
-    }
-
-    function removeTask (newId:string){
-        let filteredTask = tasks.filter(el => el.id !== newId);
-        setTasks(filteredTask);
-    }
-
-    function addTask (title:string) {
-        let newTask = { id: v1(), title: title, isDone: true };
-        let newTasks = [newTask, ...tasks];
-        setTasks(newTasks);
-    }
-
-    console.log('render');
+const App = (props: StatePropsType) => {
     return (
-        <div className="App">
-            <Todolist
-                title='What to learn'
-                task={tasksForTodolist}//1
-                removeTask={removeTask}
-                changeFilter={changeFilter}
-                addTask={addTask}
-            />
-        </div>
+        <BrowserRouter>
+            <div className='app-wrapper'>
+                <Header/>
+                <Navbar/>
+                <div className='app-wrapper-content'>
+                    <Routes>
+                        <Route path='/profile/*'
+                               element={<Profile posts={props.state.profilePage.posts}/>}/>
+                        <Route path='/dialogs/*'
+                               element={<Dialogs dialogs={props.state.dialogsPage.dialogs}
+                                                 messages={props.state.dialogsPage.messages}/>}/>
+                        <Route path='/news/*' element={<News/>}/>
+                        <Route path='/music/*' element={<Music/>}/>
+                        <Route path='/settings/*' element={<Settings/>}/>
+                    </Routes>
+                </div>
+            </div>
+        </BrowserRouter>
     );
 }
 
