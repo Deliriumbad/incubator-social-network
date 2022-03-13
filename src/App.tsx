@@ -15,7 +15,7 @@ type AppPropsType = {
     addPost:(post:string)=>void
 }
 
-const App = (props: AppPropsType) => {
+const App: React.FC<AppPropsType> = (props) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>

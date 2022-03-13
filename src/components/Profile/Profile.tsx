@@ -13,7 +13,7 @@ type ProfilePropsType = {
     addPost:(post:string)=>void
 }
 
-export const Profile = (props:ProfilePropsType) => {
+export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div>
             <ProfileInfo />

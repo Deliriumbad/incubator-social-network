@@ -24,12 +24,6 @@ export type StateRootPropsType = {
     profilePage:ProfilePagePropsType
     dialogsPage:MessagesPagePropsType
 }
-export type StatePropsType = {
-    state:StateRootPropsType
-}
-
-
-
 
 export let state = {
     profilePage: {

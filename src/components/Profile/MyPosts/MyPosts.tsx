@@ -12,12 +12,11 @@ type PostsPropsType = {
     addPost:(post:string)=>void
 }
 
-export const MyPosts = (props:PostsPropsType) => {
+export const MyPosts: React.FC<PostsPropsType> = (props) => {
 
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
-
         const text = newPostElement.current?.value || ''
         props.addPost(text)
     }
