@@ -1,5 +1,36 @@
 import React from "react";
 
+type DialogsPropsType = {
+    id: number
+    name: string
+}
+type MessagesPropsType = {
+    id: number
+    message: string
+}
+type PostsPropsType = {
+    id: number
+    message: string
+    likesCount: string
+}
+type ProfilePagePropsType = {
+    posts: Array<PostsPropsType>
+}
+type MessagesPagePropsType = {
+    messages:Array<MessagesPropsType>
+    dialogs: Array<DialogsPropsType>
+}
+export type StateRootPropsType = {
+    profilePage:ProfilePagePropsType
+    dialogsPage:MessagesPagePropsType
+}
+export type StatePropsType = {
+    state:StateRootPropsType
+}
+
+
+
+
 export let state = {
     profilePage: {
         posts : [

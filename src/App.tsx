@@ -8,34 +8,9 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
+import {StatePropsType} from "./redux/state";
 
-type DialogsPropsType = {
-    id: number
-    name: string
-}
-type MessagesPropsType = {
-    id: number
-    message: string
-}
-type PostsPropsType = {
-    id: number
-    message: string
-    likesCount: string
-}
-type ProfilePagePropsType = {
-    posts: Array<PostsPropsType>
-}
-type MessagesPagePropsType = {
-    messages:Array<MessagesPropsType>
-    dialogs: Array<DialogsPropsType>
-}
-type StateContainPropsType = {
-    profilePage:ProfilePagePropsType
-    dialogsPage:MessagesPagePropsType
-}
-type StatePropsType = {
-    state:StateContainPropsType
-}
+
 
 const App = (props: StatePropsType) => {
     return (
