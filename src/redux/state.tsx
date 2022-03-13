@@ -11,7 +11,7 @@ type MessagesPropsType = {
 type PostsPropsType = {
     id: number
     message: string
-    likesCount: string
+    likesCount: number
 }
 type ProfilePagePropsType = {
     posts: Array<PostsPropsType>
@@ -34,8 +34,8 @@ export type StatePropsType = {
 export let state = {
     profilePage: {
         posts : [
-            {id: 1, message: 'Hi, how are you', likesCount:'0'},
-            {id: 2, message: 'My first post', likesCount:'23'}
+            {id: 1, message: 'Hi, how are you', likesCount: 0},
+            {id: 2, message: 'My first post', likesCount: 23}
         ],
     },
     dialogsPage: {
@@ -56,4 +56,14 @@ export let state = {
             {id: 6, name: 'Andrei'},
         ],
     },
+}
+
+export const addPost = (postMessage:string) => {
+    debugger
+    const newPost = {
+      id: new Date().getTime(),
+      message: postMessage,
+      likesCount: 0
+  }
+  state.profilePage.posts.push(newPost)
 }
