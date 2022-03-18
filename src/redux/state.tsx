@@ -1,4 +1,5 @@
-import {renderEntireTree} from "../render";
+let renderEntireTree = () => {
+}
 
 type DialogsPropsType = {
     id: number
@@ -55,7 +56,7 @@ export let state = {
 }
 
 
-export const addPost = (message:string) => {
+export const addPost = (message: string) => {
     const newPost = {
         id: new Date().getTime(),
         message: message,
@@ -63,10 +64,14 @@ export const addPost = (message:string) => {
     }
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = ''
-    renderEntireTree(state)
+    renderEntireTree()
 }
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    renderEntireTree(state)
+    renderEntireTree()
+}
+
+export const subscribe = (observer: ()=> void) => {
+    renderEntireTree = observer
 }
