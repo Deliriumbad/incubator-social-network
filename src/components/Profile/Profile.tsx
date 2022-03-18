@@ -9,7 +9,7 @@ type PostsPropsType = {
 }
 type ProfilePropsType = {
     posts: Array<PostsPropsType>
-    addPost:()=>void
+    addPost:(message:string)=>void
     updateNewPostText:(test:string)=>void
     message:string
 }

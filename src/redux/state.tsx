@@ -55,10 +55,10 @@ export let state = {
 }
 
 
-export const addPost = () => {
+export const addPost = (message:string) => {
     const newPost = {
         id: new Date().getTime(),
-        message: state.profilePage.newPostText,
+        message: message,
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
