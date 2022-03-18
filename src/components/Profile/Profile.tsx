@@ -1,5 +1,4 @@
 import React from 'react';
-import s from './Profile.module.css';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfelInfo/ProfileInfo";
 
@@ -10,7 +9,9 @@ type PostsPropsType = {
 }
 type ProfilePropsType = {
     posts: Array<PostsPropsType>
-    addPost:(post:string)=>void
+    addPost:()=>void
+    updateNewPostText:(test:string)=>void
+    message:string
 }
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
@@ -19,6 +20,8 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
             <ProfileInfo />
             <MyPosts posts={props.posts}
                      addPost={props.addPost}
+                     message={props.message}
+                     updateNewPostText={props.updateNewPostText}
             />
         </div>
     );

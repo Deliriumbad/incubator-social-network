@@ -1,4 +1,3 @@
-import React from "react";
 import {renderEntireTree} from "../render";
 
 type DialogsPropsType = {
@@ -16,25 +15,27 @@ type PostsPropsType = {
 }
 type ProfilePagePropsType = {
     posts: Array<PostsPropsType>
+    newPostText: string
 }
 type MessagesPagePropsType = {
-    messages:Array<MessagesPropsType>
+    messages: Array<MessagesPropsType>
     dialogs: Array<DialogsPropsType>
 }
 export type StateRootPropsType = {
-    profilePage:ProfilePagePropsType
-    dialogsPage:MessagesPagePropsType
+    profilePage: ProfilePagePropsType
+    dialogsPage: MessagesPagePropsType
 }
 
 export let state = {
     profilePage: {
-        posts : [
+        posts: [
             {id: 1, message: 'Hi, how are you', likesCount: 0},
             {id: 2, message: 'My first post', likesCount: 23}
         ],
+        newPostText: '18.03.2022. 22:21',
     },
     dialogsPage: {
-        messages : [
+        messages: [
             {id: 1, message: 'Hi'},
             {id: 2, message: 'How are you?'},
             {id: 3, message: 'Yo'},
@@ -42,7 +43,7 @@ export let state = {
             {id: 5, message: '3:49'},
             {id: 6, message: 'good luck'},
         ],
-        dialogs : [
+        dialogs: [
             {id: 1, name: 'Vit'},
             {id: 2, name: 'Ann'},
             {id: 3, name: 'Alex'},
@@ -53,12 +54,19 @@ export let state = {
     },
 }
 
-export const addPost = (postMessage:string) => {
+
+export const addPost = () => {
     const newPost = {
-      id: new Date().getTime(),
-      message: postMessage,
-      likesCount: 0
-  }
-  state.profilePage.posts.push(newPost)
+        id: new Date().getTime(),
+        message: state.profilePage.newPostText,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
+    renderEntireTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
     renderEntireTree(state)
 }

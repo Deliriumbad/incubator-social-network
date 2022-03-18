@@ -12,7 +12,8 @@ import {StateRootPropsType} from "./redux/state";
 
 type AppPropsType = {
     state: StateRootPropsType,
-    addPost:(post:string)=>void
+    addPost:()=>void
+    updateNewPostText:(text:string)=>void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -26,6 +27,8 @@ const App: React.FC<AppPropsType> = (props) => {
                         <Route path='/profile/*'
                                element={<Profile posts={props.state.profilePage.posts}
                                                  addPost={props.addPost}
+                                                 message={props.state.profilePage.newPostText}
+                                                 updateNewPostText={props.updateNewPostText}
                                />}/>
                         <Route path='/dialogs/*'
                                element={<Dialogs dialogs={props.state.dialogsPage.dialogs}
