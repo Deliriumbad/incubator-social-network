@@ -1,4 +1,5 @@
 import React from "react";
+import {renderEntireTree} from "../render";
 
 type DialogsPropsType = {
     id: number
@@ -53,11 +54,11 @@ export let state = {
 }
 
 export const addPost = (postMessage:string) => {
-    debugger
     const newPost = {
       id: new Date().getTime(),
       message: postMessage,
       likesCount: 0
   }
   state.profilePage.posts.push(newPost)
+    renderEntireTree(state)
 }
