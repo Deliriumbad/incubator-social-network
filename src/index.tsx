@@ -10,10 +10,7 @@ import App from './App';
 export const renderEntireTree =()=> {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={store.getState()}
-                 addPost={store.addPost.bind(store)}
-                 updateNewPostText={store.updateNewPostText.bind(store)}
-            />
+            <App store={store}/>
         </React.StrictMode>,
         document.getElementById('root')
     );

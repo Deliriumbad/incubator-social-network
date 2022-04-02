@@ -8,12 +8,10 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
-import {StateRootPropsType} from "./redux/state";
+import {StoreType} from "./redux/state";
 
 type AppPropsType = {
-    state: StateRootPropsType,
-    addPost:(post:string)=>void
-    updateNewPostText:(text:string)=>void
+    store: StoreType,
 }
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -25,14 +23,13 @@ const App: React.FC<AppPropsType> = (props) => {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile/*'
-                               element={<Profile posts={props.state.profilePage.posts}
-                                                 addPost={props.addPost}
-                                                 message={props.state.profilePage.newPostText}
-                                                 updateNewPostText={props.updateNewPostText}
+                               element={<Profile posts={props.store._state.profilePage.posts}
+                                                 dispatch={props.store.dispatch.bind(props.store)}
+                                                 message={props.store._state.profilePage.newPostText}
                                />}/>
                         <Route path='/dialogs/*'
-                               element={<Dialogs dialogs={props.state.dialogsPage.dialogs}
-                                                 messages={props.state.dialogsPage.messages}/>}/>
+                               element={<Dialogs dialogs={props.store._state.dialogsPage.dialogs}
+                                                 messages={props.store._state.dialogsPage.messages}/>}/>
                         <Route path='/news/*' element={<News/>}/>
                         <Route path='/music/*' element={<Music/>}/>
                         <Route path='/settings/*' element={<Settings/>}/>
