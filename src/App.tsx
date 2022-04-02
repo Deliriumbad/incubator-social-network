@@ -11,7 +11,7 @@ import {Music} from "./components/Music/Music";
 import {StoreType} from "./redux/state";
 
 type AppPropsType = {
-    store: StoreType,
+    store: StoreType
 }
 
 const App: React.FC<AppPropsType> = (props) => {

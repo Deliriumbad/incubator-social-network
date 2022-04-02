@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {ActionsTypes} from "../../../redux/state";
+import {ActionsTypes, addPostActionCreator, changeNewTextActionCreator} from "../../../redux/state";
+
 
 type PostsMessagePropsType = {
     id:number
@@ -17,16 +18,16 @@ type PostsPropsType = {
 export const MyPosts: React.FC<PostsPropsType> = (props) => {
 
     const addPost = () => {
-        props.dispatch({type: "ADD-POST", message: props.message})
+        props.dispatch(addPostActionCreator(props.message))
     }
 
     const onPostChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value
-        props.dispatch({type: 'CHANGE-NEW-TEXT', newText: text})
+        const text = e.currentTarget.value
+        props.dispatch(changeNewTextActionCreator(text))
 
     }
 
-    let postsElements = props.posts.map( el => <Post key={el.id} message={el.message} likesCount={el.likesCount}/>)
+    const postsElements = props.posts.map( el => <Post key={el.id} message={el.message} likesCount={el.likesCount}/>)
 
     return (
         <div className={s.postBlock}>
