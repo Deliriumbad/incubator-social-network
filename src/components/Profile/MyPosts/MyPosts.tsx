@@ -17,17 +17,19 @@ type PostsPropsType = {
 
 export const MyPosts: React.FC<PostsPropsType> = (props) => {
 
+    const {posts, message, dispatch} = props;
+
     const addPost = () => {
-        props.dispatch(addPostActionCreator(props.message))
+       dispatch(addPostActionCreator(message))
     }
 
     const onPostChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
         const text = e.currentTarget.value
-        props.dispatch(changeNewTextActionCreator(text))
+        dispatch(changeNewTextActionCreator(text))
 
     }
 
-    const postsElements = props.posts.map( el => <Post key={el.id} message={el.message} likesCount={el.likesCount}/>)
+    const postsElements = posts.map( el => <Post key={el.id} message={el.message} likesCount={el.likesCount}/>)
 
     return (
         <div className={s.postBlock}>
@@ -35,7 +37,7 @@ export const MyPosts: React.FC<PostsPropsType> = (props) => {
             <div>
                 <div>
                     <textarea onChange={onPostChangeHandler}
-                              value={props.message}
+                              value={message}
                     />
                 </div>
                 <div>
@@ -48,3 +50,4 @@ export const MyPosts: React.FC<PostsPropsType> = (props) => {
         </div>
     );
 }
+

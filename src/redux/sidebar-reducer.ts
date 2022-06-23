@@ -1,5 +1,11 @@
+import {sidebarPropsType} from "./store";
+import {ActionsTypes} from "./profile-reducer";
 
-export const sidebarReducer = ({state, action}: { state: any, action: any }) => {
+let initialState = {
+
+}
+
+export const sidebarReducer = (state: sidebarPropsType = initialState, action: ActionsTypes ) => {
 
     return state;
 }

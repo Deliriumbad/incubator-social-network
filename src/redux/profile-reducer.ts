@@ -1,4 +1,4 @@
-import {ProfilePagePropsType} from "./state";
+import {ProfilePagePropsType} from "./store";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
 
 const ADD_POST = 'ADD-POST'
@@ -15,9 +15,15 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof sendMessageCreator>
 
 
-export const profileReducer = (props:ProfileReducerPropsType) => {
+let initialState = {
+    posts: [
+        {id: 1, message: 'Hi, how are you', likesCount: 0},
+        {id: 2, message: 'My first post', likesCount: 23}
+    ],
+    newPostText: '18.03.2022. 22:21',
+}
 
-    const {state, action} = props
+export const profileReducer = (state: ProfilePagePropsType = initialState, action: ActionsTypes) => {
 
     switch (action.type) {
         case ADD_POST:
@@ -36,15 +42,15 @@ export const profileReducer = (props:ProfileReducerPropsType) => {
             return state;
     }
 }
-export const addPostActionCreator = (message:string) => {
+export const addPostActionCreator = (message: string) => {
     return {
         type: 'ADD-POST',
-        message:message
+        message: message
     } as const
 }
-export const changeNewTextActionCreator = (newText:string) => {
+export const changeNewTextActionCreator = (newText: string) => {
     return {
         type: 'CHANGE-NEW-TEXT',
-        newText:newText
+        newText: newText
     } as const
 }//обновить тело нового сообщения - перевод

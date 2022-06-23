@@ -15,12 +15,15 @@ type ProfilePropsType = {
 }
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {
+
+    const {posts, message, dispatch} = props;
+
     return (
         <div>
             <ProfileInfo />
-            <MyPosts posts={props.posts}
-                     message={props.message}
-                     dispatch={props.dispatch}
+            <MyPosts posts={posts}
+                     message={message}
+                     dispatch={dispatch}
             />
         </div>
     );

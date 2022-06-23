@@ -8,13 +8,18 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
-import {StoreType} from "./redux/state";
+import {RootStateReduxType} from "./redux/redux-store";
+import {ActionsTypes} from "./redux/dialogs-reducer";
 
 type AppPropsType = {
-    store: StoreType
+    store: RootStateReduxType
+    dispatch: (action: ActionsTypes) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
+
+    const {store, dispatch} = props;
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -23,15 +28,15 @@ const App: React.FC<AppPropsType> = (props) => {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile/*'
-                               element={<Profile posts={props.store._state.profilePage.posts}
-                                                 dispatch={props.store.dispatch.bind(props.store)}
-                                                 message={props.store._state.profilePage.newPostText}
+                               element={<Profile posts={store.profilePage.posts}
+                                                 dispatch={dispatch}
+                                                 message={store.profilePage.newPostText}
                                />}/>
                         <Route path='/dialogs/*'
-                               element={<Dialogs dialogs={props.store._state.dialogsPage.dialogs}
-                                                 dispatch={props.store.dispatch.bind(props.store)}
-                                                 newMessageBody={props.store._state.dialogsPage.newMessageBody}
-                                                 messages={props.store._state.dialogsPage.messages}/>}/>
+                               element={<Dialogs dialogs={store.dialogsPage.dialogs}
+                                                 dispatch={dispatch}
+                                                 newMessageBody={store.dialogsPage.newMessageBody}
+                                                 messages={store.dialogsPage.messages}/>}/>
                         <Route path='/news/*' element={<News/>}/>
                         <Route path='/music/*' element={<Music/>}/>
                         <Route path='/settings/*' element={<Settings/>}/>

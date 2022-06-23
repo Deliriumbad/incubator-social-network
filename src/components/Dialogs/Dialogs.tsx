@@ -22,16 +22,20 @@ type DialogsProps = {
 
 export const Dialogs: React.FC<DialogsProps> = (props) => {
 
-    const dialogsElements = props.dialogs.map(el => <DialogItem name={el.name} id={el.id}/>)
-    const messagesElements = props.messages.map(el => <Message message={el.message}/>)
-    const newMessageBody = props.newMessageBody
+
+
+    const {dialogs, messages, dispatch, newMessageBody} = props;
+
+    const dialogsElements = dialogs.map(el => <DialogItem name={el.name} id={el.id}/>)
+    const messagesElements = messages.map(el => <Message message={el.message} />)
+
 
     const onSendMessageClick = () => {
-        props.dispatch(sendMessageCreator())
+       dispatch(sendMessageCreator())
     }
     const onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
         const body = e.target.value
-        props.dispatch(updateNewMessageBodyCreator(body))
+        dispatch(updateNewMessageBodyCreator(body))
     }
 
     return (

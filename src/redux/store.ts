@@ -1,6 +1,6 @@
-import {profileReducer} from "./profile-reducer";
-import {ActionsTypes, dialogsReducer} from "./dialogs-reducer";
-import {sidebarReducer} from "./sidebar-reducer";
+
+import {ActionsTypes} from "./dialogs-reducer";
+
 
 export type DialogsPropsType = {
     id: number
@@ -20,6 +20,7 @@ export type ProfilePagePropsType = {
     newPostText: string
 }
 export type sidebarPropsType = {}
+
 export type MessagesPagePropsType = {
     messages: Array<MessagesPropsType>
     dialogs: Array<DialogsPropsType>
@@ -41,7 +42,8 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export const store: StoreType = {
+
+/*export const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -83,13 +85,16 @@ export const store: StoreType = {
 
     dispatch(action) {
 
-        this._state.profilePage = profileReducer({state: this._state.profilePage, action: action})
-        this._state.dialogsPage = dialogsReducer({state: this._state.dialogsPage, action: action})
-        this._state.sidebar = sidebarReducer({state: this._state.sidebar, action: action})
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
         this._renderEntireTree()
     }
-}
+}*/
+
+//@ts-ignore
+window.store=store
 
 
 
