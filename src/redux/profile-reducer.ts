@@ -4,16 +4,10 @@ import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
 
-type ProfileReducerPropsType = {
-    state: ProfilePagePropsType
-    action: ActionsTypes
-}
-
 export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof changeNewTextActionCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
     | ReturnType<typeof sendMessageCreator>
-
 
 let initialState = {
     posts: [
@@ -42,10 +36,9 @@ export const profileReducer = (state: ProfilePagePropsType = initialState, actio
             return state;
     }
 }
-export const addPostActionCreator = (message: string) => {
+export const addPostActionCreator = () => {
     return {
-        type: 'ADD-POST',
-        message: message
+        type: 'ADD-POST'
     } as const
 }
 export const changeNewTextActionCreator = (newText: string) => {

@@ -4,12 +4,6 @@ import {addPostActionCreator, changeNewTextActionCreator} from "./profile-reduce
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
-type DialogsReducerPropsType = {
-    state: MessagesPagePropsType
-    action: ActionsTypes
-}
-
-
 export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof changeNewTextActionCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
@@ -34,7 +28,6 @@ let initialState = {
     ],
     newMessageBody: '',
 }
-
 
 export const dialogsReducer = (state: MessagesPagePropsType = initialState, action: ActionsTypes) => {
 

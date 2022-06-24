@@ -1,6 +1,4 @@
-
 import {ActionsTypes} from "./dialogs-reducer";
-
 
 export type DialogsPropsType = {
     id: number
@@ -31,7 +29,6 @@ export type StateRootPropsType = {
     profilePage: ProfilePagePropsType
     dialogsPage: MessagesPagePropsType
     sidebar: sidebarPropsType
-
 }
 
 export type StoreType = {

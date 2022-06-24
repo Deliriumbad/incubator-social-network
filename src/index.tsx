@@ -6,12 +6,10 @@ import './index.css';
 import App from './App';
 
 
-
-
 export const renderEntireTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store.getState()} dispatch={store.dispatch.bind(store)}/>
+            <App store={store} dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
