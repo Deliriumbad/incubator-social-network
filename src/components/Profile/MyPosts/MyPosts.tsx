@@ -23,8 +23,8 @@ export const MyPosts: React.FC<PostsPropsType> = (props) => {
     }
 
     const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const text = e.currentTarget.value
-        updateNewPostText(text)
+        const text = e.currentTarget.value;
+        updateNewPostText(text);
 
     }
 
