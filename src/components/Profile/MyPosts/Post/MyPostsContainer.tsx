@@ -1,31 +1,39 @@
 import React from 'react';
 import {MyPosts} from "../MyPosts";
 import {addPostActionCreator, changeNewTextActionCreator} from "../../../../redux/profile-reducer";
-import {StoreContext} from "../../../../StoreContext";
+import {connect} from "react-redux";
+import {RootStateReduxType} from "../../../../redux/redux-store";
+import {Dispatch} from "redux";
+import {PostsPropsType} from "../../../../redux/store";
 
-export const MyPostsContainer = () => {
-
-    return <StoreContext.Consumer>
-        {
-        (store) => {
-
-            const state = store.getState();
-
-            const addPost = () => {
-                store.dispatch(addPostActionCreator())
-            }
-
-            const onPostChangeHandler = (text: string) => {
-                const action = changeNewTextActionCreator(text)
-                store.dispatch(action)
-
-            }
-            return <MyPosts addPost={addPost}
-                     updateNewPostText={onPostChangeHandler}
-                     posts={state.profilePage.posts}
-                     message={state.profilePage.newPostText}
-            />}
-        }
-    </StoreContext.Consumer>
+type MapStatePropsType = {
+    posts: Array<PostsPropsType>
+    message: string
 }
+
+type MapDispatchPropsType = {
+    addPost: () => void
+    updateNewPostText: (text: string) => void
+}
+
+const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
+    return {
+        posts: state.profilePage.posts,
+        message: state.profilePage.newPostText,
+    }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+  return {
+      addPost: () => {
+          dispatch(addPostActionCreator())
+      },
+      updateNewPostText: (text) => {
+          const action = changeNewTextActionCreator(text)
+          dispatch(action)
+      }
+  }
+}
+
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
