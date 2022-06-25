@@ -16,8 +16,8 @@ export const Dialogs: React.FC<DialogsProps> = (props) => {
 
     let dialogsPage = state.dialogsPage;
 
-    const dialogsElements = dialogsPage.dialogs.map(el => <DialogItem name={el.name} id={el.id}/>)
-    const messagesElements = dialogsPage.messages.map(el => <Message message={el.message}/>)
+    const dialogsElements = dialogsPage.dialogs.map(el => <DialogItem name={el.name} id={el.id} key={el.id}/>)
+    const messagesElements = dialogsPage.messages.map(el => <Message message={el.message} key={el.id}/>)
     const newMessageBody = dialogsPage.newMessageBody;
 
 

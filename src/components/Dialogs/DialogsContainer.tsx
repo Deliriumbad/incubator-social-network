@@ -5,8 +5,10 @@ import {connect} from "react-redux";
 import {RootStateReduxType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 
+
 type MapStatePropsType = {
     state: RootStateReduxType
+
 }
 
 type MapDispatchPropsType = {

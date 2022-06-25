@@ -1,13 +1,6 @@
-import {ActionsTypes} from "./dialogs-reducer";
+import React from "react";
+/*
 
-export type DialogsPropsType = {
-    id: number
-    name: string
-}
-export type MessagesPropsType = {
-    id: number
-    message: string
-}
 export type PostsPropsType = {
     id: number
     message: string
@@ -19,11 +12,7 @@ export type ProfilePagePropsType = {
 }
 export type sidebarPropsType = {}
 
-export type MessagesPagePropsType = {
-    messages: Array<MessagesPropsType>
-    dialogs: Array<DialogsPropsType>
-    newMessageBody: string
-}
+
 
 export type StateRootPropsType = {
     profilePage: ProfilePagePropsType
@@ -40,7 +29,7 @@ export type StoreType = {
 }
 
 
-/*export const store: StoreType = {
+/!*export const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -88,7 +77,7 @@ export type StoreType = {
 
         this._renderEntireTree()
     }
-}*/
+}*!/
 
 //@ts-ignore
 window.store=store
@@ -108,3 +97,5 @@ window.store=store
 
 
 
+*!/
+*/

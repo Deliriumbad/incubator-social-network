@@ -1,4 +1,3 @@
-import {ProfilePagePropsType} from "./store";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
 
 const ADD_POST = 'ADD-POST'
@@ -9,6 +8,16 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
     | ReturnType<typeof sendMessageCreator>
 
+export type PostsPropsType = {
+    id: number
+    message: string
+    likesCount: number
+}
+export type ProfilePagePropsType = {
+    posts: Array<PostsPropsType>
+    newPostText: string
+}
+
 let initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you', likesCount: 0},
@@ -18,7 +27,6 @@ let initialState = {
 }
 
 export const profileReducer = (state: ProfilePagePropsType = initialState, action: ActionsTypes) => {
-
     switch (action.type) {
         case ADD_POST: {
             const newPost = {
@@ -26,16 +34,17 @@ export const profileReducer = (state: ProfilePagePropsType = initialState, actio
                 message: state.newPostText,
                 likesCount: 0
             }
-            const stateCopy = {...state};
-            stateCopy.posts = [...state.posts];
-            stateCopy.posts.push(newPost)
-            stateCopy.newPostText = '';
-            return stateCopy;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: '',
+            }
         }
         case CHANGE_NEW_TEXT: {
-            const stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText,
+            };
         }
         default:
             return state;

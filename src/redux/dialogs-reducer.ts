@@ -1,4 +1,3 @@
-import {MessagesPagePropsType} from "./store";
 import {addPostActionCreator, changeNewTextActionCreator} from "./profile-reducer";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
@@ -8,6 +7,23 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof changeNewTextActionCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
     | ReturnType<typeof sendMessageCreator>
+
+
+export type DialogsPropsType = {
+    id: number
+    name: string
+}
+export type MessagesPropsType = {
+    id: number
+    message: string
+}
+
+export type MessagesPagePropsType = {
+    messages: Array<MessagesPropsType>
+    dialogs: Array<DialogsPropsType>
+    newMessageBody: string
+}
+
 
 let initialState = {
     dialogs: [
@@ -30,16 +46,21 @@ let initialState = {
 }
 
 export const dialogsReducer = (state: MessagesPagePropsType = initialState, action: ActionsTypes) => {
-
+debugger
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body;
-            return state;
-        case SEND_MESSAGE:
+        case UPDATE_NEW_MESSAGE_BODY: {
+            return  {
+                ...state, newMessageBody: action.body
+            };
+        }
+        case SEND_MESSAGE: {
             const body = state.newMessageBody;
-            state.newMessageBody = '';
-            state.messages.push({id: 7, message: body});
-            return state;
+            return {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messages, {id: 7, message: body}]
+            };
+        }
         default:
             return state;
     }

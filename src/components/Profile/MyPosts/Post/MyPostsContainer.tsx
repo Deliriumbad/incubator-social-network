@@ -1,10 +1,10 @@
 import React from 'react';
 import {MyPosts} from "../MyPosts";
-import {addPostActionCreator, changeNewTextActionCreator} from "../../../../redux/profile-reducer";
+import {addPostActionCreator, changeNewTextActionCreator, PostsPropsType} from "../../../../redux/profile-reducer";
 import {connect} from "react-redux";
 import {RootStateReduxType} from "../../../../redux/redux-store";
 import {Dispatch} from "redux";
-import {PostsPropsType} from "../../../../redux/store";
+
 
 type MapStatePropsType = {
     posts: Array<PostsPropsType>

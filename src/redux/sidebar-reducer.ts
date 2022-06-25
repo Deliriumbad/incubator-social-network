@@ -1,5 +1,6 @@
-import {sidebarPropsType} from "./store";
 import {ActionsTypes} from "./profile-reducer";
+
+export type sidebarPropsType = {}
 
 let initialState = {
 
