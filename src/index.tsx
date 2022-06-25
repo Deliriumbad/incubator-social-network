@@ -6,7 +6,6 @@ import './index.css';
 import App from './App';
 import {Provider} from "react-redux";
 
-export const renderEntireTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
@@ -15,7 +14,5 @@ export const renderEntireTree = () => {
         </React.StrictMode>,
         document.getElementById('root')
     );
-}
 
-renderEntireTree();
-store.subscribe(renderEntireTree);
+

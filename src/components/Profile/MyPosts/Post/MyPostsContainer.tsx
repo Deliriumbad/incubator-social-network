@@ -24,15 +24,15 @@ const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-  return {
-      addPost: () => {
-          dispatch(addPostActionCreator())
-      },
-      updateNewPostText: (text) => {
-          const action = changeNewTextActionCreator(text)
-          dispatch(action)
-      }
-  }
+    return {
+        addPost: () => {
+            dispatch(addPostActionCreator())
+        },
+        updateNewPostText: (text) => {
+            const action = changeNewTextActionCreator(text)
+            dispatch(action)
+        }
+    }
 }
 
 export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
