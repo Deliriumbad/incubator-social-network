@@ -28,7 +28,7 @@ export const MyPosts: React.FC<PostsPropsType> = (props) => {
 
     }
 
-    const postsElements = posts.map(el => <Post key={el.id} message={el.message} likesCount={el.likesCount}/>)
+    const postsElements = posts.map(el => <Post key={el.id} message={el.message} likesCount={el.likesCount}/>);
 
     return (
         <div className={s.postBlock}>

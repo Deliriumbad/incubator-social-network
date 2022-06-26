@@ -28,11 +28,11 @@ const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         addPost: () => {
-            dispatch(addPostActionCreator())
+            dispatch(addPostActionCreator());
         },
         updateNewPostText: (text) => {
-            const action = changeNewTextActionCreator(text)
-            dispatch(action)
+            const action = changeNewTextActionCreator(text);
+            dispatch(action);
         }
     }
 }

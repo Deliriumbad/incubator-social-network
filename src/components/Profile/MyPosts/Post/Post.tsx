@@ -7,12 +7,15 @@ type PropsPostType = {
 }
 
 export const Post: React.FC<PropsPostType> = (props) => {
+
+    const {message, likesCount} = props;
+
     return (
         <div className={s.item}>
             <img alt='pic' src='https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'/>
-            {props.message}
+            {message}
             <div>
-                <span>like  </span>{props.likesCount}
+                <span>like  </span>{likesCount}
             </div>
         </div>
     );
