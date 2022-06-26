@@ -8,7 +8,6 @@ import {Dispatch} from "redux";
 
 type MapStatePropsType = {
     state: RootStateReduxType
-
 }
 
 type MapDispatchPropsType = {

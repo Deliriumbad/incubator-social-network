@@ -22,11 +22,13 @@ let initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you', likesCount: 0},
         {id: 2, message: 'My first post', likesCount: 23}
-    ],
+    ] as Array<PostsPropsType>,
     newPostText: '18.03.2022. 22:21',
 }
 
-export const profileReducer = (state: ProfilePagePropsType = initialState, action: ActionsTypes) => {
+export type InitialStateType = typeof initialState;
+
+export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case ADD_POST: {
             const newPost = {

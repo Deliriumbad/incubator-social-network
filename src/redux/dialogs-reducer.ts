@@ -33,7 +33,7 @@ let initialState = {
         {id: 4, name: 'Victor'},
         {id: 5, name: 'Mike'},
         {id: 6, name: 'Andrei'},
-    ],
+    ] as Array<DialogsPropsType>,
     messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How are you?'},
@@ -41,12 +41,13 @@ let initialState = {
         {id: 4, message: 'YoYoYoYo'},
         {id: 5, message: '3:49'},
         {id: 6, message: 'good luck'},
-    ],
+    ] as Array<MessagesPropsType>,
     newMessageBody: '',
 }
 
-export const dialogsReducer = (state: MessagesPagePropsType = initialState, action: ActionsTypes) => {
-debugger
+export type InitialStateType = typeof initialState;
+
+export const dialogsReducer = (state: MessagesPagePropsType = initialState, action: ActionsTypes): MessagesPagePropsType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY: {
             return  {

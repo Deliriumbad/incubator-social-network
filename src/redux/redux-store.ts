@@ -15,4 +15,4 @@ export let store = createStore(reducers);
 export type RootStateReduxType = ReturnType<typeof reducers>
 
 // типизация store всего приложения
-export type RootStoreType = typeof store
+export type RootStoreType = typeof store;

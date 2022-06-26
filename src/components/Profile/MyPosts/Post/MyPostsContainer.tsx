@@ -16,6 +16,8 @@ type MapDispatchPropsType = {
     updateNewPostText: (text: string) => void
 }
 
+export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType;
+
 const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
     return {
         posts: state.profilePage.posts,
