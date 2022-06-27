@@ -9,7 +9,7 @@ export type LocationType = {
     country: string
 }
 
-export type UserType = {
+export type UserType1 = {
     id: number
     photoUrl: string
     followed: boolean
@@ -18,44 +18,27 @@ export type UserType = {
     location: LocationType
 }
 
+export type PhotosType = {
+    small?: string
+    large?: string
+}
+
+export type UserType = {
+    name: string
+    id: number
+    uniqueUrlName?: string
+    photos: PhotosType
+    status?: string
+    followed: boolean
+}
+
 const initialState = {
     users: [
-        {
-            id: 1,
-            photoUrl: 'https://resizer.mail.ru/p/7a1e86df-9686-5098-963e-27304c6f1133/AAACY37OntEVxnf9OOUuLkcQpyEwVtb3AZgK14eU9OI6IljiYtBizDmEp-vG8UfPC3h-OB130PE-ba1mk1rY6S-3Zek.jpg',
-            followed: false,
-            fullName: 'Vit',
-            status: 'student',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: 2,
-            photoUrl: 'https://resizer.mail.ru/p/7a1e86df-9686-5098-963e-27304c6f1133/AAACY37OntEVxnf9OOUuLkcQpyEwVtb3AZgK14eU9OI6IljiYtBizDmEp-vG8UfPC3h-OB130PE-ba1mk1rY6S-3Zek.jpg',
-            followed: true,
-            fullName: 'Ann',
-            status: 'it-specialist',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: 3,
-            photoUrl: 'https://resizer.mail.ru/p/7a1e86df-9686-5098-963e-27304c6f1133/AAACY37OntEVxnf9OOUuLkcQpyEwVtb3AZgK14eU9OI6IljiYtBizDmEp-vG8UfPC3h-OB130PE-ba1mk1rY6S-3Zek.jpg',
-            followed: false,
-            fullName: 'Alex',
-            status: 'doctor',
-            location: {city: ' Kiev', country: 'Ukraine'}
-        },
-        {
-            id: 4,
-            photoUrl: 'https://resizer.mail.ru/p/7a1e86df-9686-5098-963e-27304c6f1133/AAACY37OntEVxnf9OOUuLkcQpyEwVtb3AZgK14eU9OI6IljiYtBizDmEp-vG8UfPC3h-OB130PE-ba1mk1rY6S-3Zek.jpg',
-            followed: true,
-            fullName: 'Hohol',
-            status: 'it-ludoman',
-            location: {city: 'Batymi', country: 'Georgia'}
-        },
+
     ] as Array<UserType>,
 }
 
-type InitialStateType = typeof initialState;
+type InitialStateType = typeof initialState
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
