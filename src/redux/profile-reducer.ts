@@ -1,4 +1,5 @@
 import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
@@ -7,15 +8,14 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof changeNewTextActionCreator>
     | ReturnType<typeof updateNewMessageBodyCreator>
     | ReturnType<typeof sendMessageCreator>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
 
 export type PostsPropsType = {
     id: number
     message: string
     likesCount: number
-}
-export type ProfilePagePropsType = {
-    posts: Array<PostsPropsType>
-    newPostText: string
 }
 
 let initialState = {

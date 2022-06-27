@@ -1,12 +1,7 @@
-import {addPostActionCreator, changeNewTextActionCreator} from "./profile-reducer";
+import {ActionsTypes} from "./profile-reducer";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
-
-export type ActionsTypes = ReturnType<typeof addPostActionCreator>
-    | ReturnType<typeof changeNewTextActionCreator>
-    | ReturnType<typeof updateNewMessageBodyCreator>
-    | ReturnType<typeof sendMessageCreator>
 
 
 export type DialogsPropsType = {
