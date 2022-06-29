@@ -1,14 +1,11 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
+import {PostsType} from "../../../redux/profile-reducer";
 
-type PostsMessagePropsType = {
-    id: number
-    message: string
-    likesCount: number
-}
+
 type PostsPropsType = {
-    posts: Array<PostsMessagePropsType>
+    posts: Array<PostsType>
     message: string
     updateNewPostText: (text: string) => void
     addPost: () => void

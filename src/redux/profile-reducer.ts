@@ -12,7 +12,7 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC>
 
-export type PostsPropsType = {
+export type PostsType = {
     id: number
     message: string
     likesCount: number
@@ -22,7 +22,7 @@ let initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you', likesCount: 0},
         {id: 2, message: 'My first post', likesCount: 23}
-    ] as Array<PostsPropsType>,
+    ] as Array<PostsType>,
     newPostText: '18.03.2022. 22:21',
 }
 

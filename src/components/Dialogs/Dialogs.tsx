@@ -4,13 +4,13 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {RootStateReduxType} from "../../redux/redux-store";
 
-type DialogsProps = {
+type DialogsPropsType = {
     sendMessage: () => void
     updateNewMessageBody: (body: string) => void
     state: RootStateReduxType
 }
 
-export const Dialogs: React.FC<DialogsProps> = (props) => {
+export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     const {state, sendMessage, updateNewMessageBody} = props;
 

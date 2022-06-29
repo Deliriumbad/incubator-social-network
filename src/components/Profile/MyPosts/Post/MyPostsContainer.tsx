@@ -1,13 +1,13 @@
 import React from 'react';
 import {MyPosts} from "../MyPosts";
-import {addPostActionCreator, changeNewTextActionCreator, PostsPropsType} from "../../../../redux/profile-reducer";
+import {addPostActionCreator, changeNewTextActionCreator, PostsType} from "../../../../redux/profile-reducer";
 import {connect} from "react-redux";
 import {RootStateReduxType} from "../../../../redux/redux-store";
 import {Dispatch} from "redux";
 
 
 type MapStatePropsType = {
-    posts: Array<PostsPropsType>
+    posts: Array<PostsType>
     message: string
 }
 
@@ -37,5 +37,5 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+export const MyPostsContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>(mapStateToProps, mapDispatchToProps)(MyPosts);
 
