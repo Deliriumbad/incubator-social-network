@@ -3,15 +3,23 @@ import styles from './users.module.css';
 import {UserContainerPropsType} from "./UsersContainer";
 import axios from "axios";
 import userPhoto from '../../../src/assets/images/men.png';
+import {UserType} from "../../redux/users-reducer";
 
 type UsersPropsType = UserContainerPropsType
+
+type GetResponseType = {
+    items: Array<UserType>
+    totalCount:number
+    error?: null
+}
 
 export const Users: React.FC<UsersPropsType> = (props) => {
 
     if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => {
-                props.setUsers(response.data.items)
+        axios.get<GetResponseType>('https://social-network.samuraijs.com/api/1.0/users')
+            .then((res) => {
+                props.setUsers(res.data.items)
+                console.log(res.data.items)
             });
     }
 

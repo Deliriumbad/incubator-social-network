@@ -15,26 +15,26 @@ type MapDispatchPropsType = {
     setUsers: (users: UserType[]) => void
 }
 
-const mapStateToProps = (state: RootStateReduxType): MapStatePropsType  => {
-  return {
+const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
+    return {
         users: state.usersPage.users
-  }
+    }
 }
 
 export type UserContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-  return {
-        follow: (userId)=> {
+    return {
+        follow: (userId) => {
             dispatch(followAC(userId));
         },
-      unfollow: (userId)=> {
+        unfollow: (userId) => {
             dispatch((unfollowAC(userId)));
-      },
-      setUsers: (users)=> {
+        },
+        setUsers: (users) => {
             dispatch(setUsersAC(users))
-      }
-  }
+        }
+    }
 }
 
-export const UsersContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType> (mapStateToProps, mapDispatchToProps)(Users)
+export const UsersContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>(mapStateToProps, mapDispatchToProps)(Users)

@@ -4,7 +4,7 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
 
-export type LocationType = {
+/*export type LocationType = {
     city: string
     country: string
 }
@@ -16,7 +16,7 @@ export type UserType1 = {
     fullName: string
     status: string
     location: LocationType
-}
+}*/
 
 export type PhotosType = {
     small?: string
@@ -35,10 +35,10 @@ export type UserType = {
 const initialState = {
     users: [
 
-    ] as Array<UserType>,
+    ] as Array<UserType>
 }
 
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {

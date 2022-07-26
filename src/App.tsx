@@ -20,14 +20,17 @@ const App = () => {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile/*'
-                               element={<Profile />}/>
+                               element={<Profile/>}/>
                         <Route path='/dialogs/*'
-                               element={<DialogsContainer />}/>
-                        <Route path='/news/*' element={<News />}/>
-                        <Route path='/music/*' element={<Music />}/>
+                               element={<DialogsContainer/>}/>
+                        <Route path='/news/*'
+                               element={<News/>}/>
+                        <Route path='/music/*'
+                               element={<Music/>}/>
                         <Route path='/users/*'
-                                element={<UsersContainer />}/>
-                        <Route path='/settings/*' element={<Settings />}/>
+                               element={<UsersContainer/>}/>
+                        <Route path='/settings/*'
+                               element={<Settings/>}/>
                     </Routes>
                 </div>
             </div>
