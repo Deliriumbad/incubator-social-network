@@ -9,21 +9,24 @@ type UsersPropsType = UserContainerPropsType
 
 type GetResponseType = {
     items: Array<UserType>
-    totalCount:number
+    totalCount: number
     error?: null
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
 
-    if (props.users.length === 0) {
-        axios.get<GetResponseType>('https://social-network.samuraijs.com/api/1.0/users')
-            .then((res) => {
-                props.setUsers(res.data.items)
-                console.log(res.data.items)
-            });
+    const getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get<GetResponseType>('https://social-network.samuraijs.com/api/1.0/users')
+                .then((res) => {
+                    props.setUsers(res.data.items)
+                    console.log(res.data.items)
+                });
+        }
     }
 
     return <div>
+        <button onClick={getUsers}>Get users</button>
         {
             props.users.map(u => <div key={u.id}>
               <span>
