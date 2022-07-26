@@ -15,19 +15,16 @@ type GetResponseType = {
 
 export class Users extends React.Component<UsersPropsType> {
 
-    getUsers = () => {
-        if (this.props.users.length === 0) {
-            axios.get<GetResponseType>('https://social-network.samuraijs.com/api/1.0/users')
-                .then((res) => {
-                    this.props.setUsers(res.data.items)
-                    console.log(res.data.items)
-                });
-        }
+    componentDidMount() {
+        axios.get<GetResponseType>('https://social-network.samuraijs.com/api/1.0/users')
+            .then((res) => {
+                this.props.setUsers(res.data.items)
+                console.log(res.data.items)
+            });
     }
 
     render() {
         return <div>
-            <button onClick={this.getUsers}>Get users</button>
             {
                 this.props.users.map(u => <div key={u.id}>
               <span>
