@@ -1,5 +1,4 @@
 import React from "react";
-import {Users} from "./Users";
 import {Dispatch} from "redux";
 import {RootStateReduxType} from "../../redux/redux-store";
 import {
@@ -11,6 +10,8 @@ import {
     UserType
 } from "../../redux/users-reducer";
 import {connect} from "react-redux";
+import axios from "axios";
+import {Users} from "./Users";
 
 type MapStatePropsType = {
     users: Array<UserType>
@@ -25,7 +26,6 @@ type MapDispatchPropsType = {
     setUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
-
 }
 
 const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
@@ -39,6 +39,14 @@ const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
 
 export type UserContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
+export type UsersAPIContainerPropsType = UserContainerPropsType
+
+export type GetResponseType = {
+    items: Array<UserType>
+    totalCount: number
+    error?: null
+}
+
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         follow: (userId) => {
@@ -50,13 +58,45 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         setUsers: (users) => {
             dispatch(setUsersAC(users))
         },
-        setCurrentPage: (currentPage:number) => {
+        setCurrentPage: (currentPage: number) => {
             dispatch(setCurrentPageAC(currentPage))
         },
-        setTotalUsersCount: (totalUsersCount:number) => {
+        setTotalUsersCount: (totalUsersCount: number) => {
             dispatch(setTotalUsersCountAC(totalUsersCount))
         }
     }
 }
 
-export const UsersContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>(mapStateToProps, mapDispatchToProps)(Users)
+export class UsersAPIContainer extends React.Component<UsersAPIContainerPropsType> {
+
+    componentDidMount() {
+        axios.get<GetResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then((res) => {
+                this.props.setUsers(res.data.items)
+                this.props.setTotalUsersCount(res.data.totalCount)
+                console.log(res.data.items)
+            });
+    }
+
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber);
+        axios.get<GetResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then((res) => {
+                this.props.setUsers(res.data.items)
+                console.log(res.data.items)
+            });
+    }
+
+    render() {
+        return <Users totalUsersCount={this.props.totalUsersCount}
+                      pageSize={this.props.pageSize}
+                      currentPage={this.props.currentPage}
+                      users={this.props.users}
+                      unfollow={this.props.unfollow}
+                      follow={this.props.follow}
+                      onPageChanged={this.onPageChanged}
+        />
+    }
+}
+
+export const UsersContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>(mapStateToProps, mapDispatchToProps)(UsersAPIContainer)
