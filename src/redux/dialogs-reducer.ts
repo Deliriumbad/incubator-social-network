@@ -3,7 +3,6 @@ import {ActionsTypes} from "./profile-reducer";
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
-
 export type DialogsType = {
     id: number
     name: string
