@@ -22,7 +22,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 />
             </div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
+                <img src={props.profile.photos.small}/>
                 ava+description
             </div>
         </div>
