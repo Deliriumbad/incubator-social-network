@@ -45,7 +45,7 @@ export type UserContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
 export type UsersAPIContainerPropsType = UserContainerPropsType
 
-export type GetResponseType = {
+type GetResponseType = {
     items: Array<UserType>
     totalCount: number
     error?: null

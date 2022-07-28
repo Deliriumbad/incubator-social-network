@@ -1,17 +1,9 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {PostsType} from "../../../redux/profile-reducer";
+import {MyPostsPropsType} from "./Post/MyPostsContainer";
 
-
-type PostsPropsType = {
-    posts: Array<PostsType>
-    message: string
-    updateNewPostText: (text: string) => void
-    addPost: () => void
-}
-
-export const MyPosts: React.FC<PostsPropsType> = (props) => {
+export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
     const {posts, message, updateNewPostText, addPost} = props;
 
@@ -22,7 +14,6 @@ export const MyPosts: React.FC<PostsPropsType> = (props) => {
     const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const text = e.currentTarget.value;
         updateNewPostText(text);
-
     }
 
     const postsElements = posts.map(el => <Post key={el.id} message={el.message} likesCount={el.likesCount}/>);
