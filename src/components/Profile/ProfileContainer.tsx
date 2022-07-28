@@ -3,40 +3,15 @@ import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {RootStateReduxType} from "../../redux/redux-store";
-import {setUserProfile} from "../../redux/profile-reducer";
+import {ProfileType, setUserProfile} from "../../redux/profile-reducer";
 
-type GetResponseContactsType = {
-    facebook: string
-    website?: null
-    vk: string
-    twitter: string
-    instagram: string
-    youtube?: null
-    github: string
-    mainLink?: null
-}
-
-type GetResponsePhotosType = {
-    small: string
-    large: string
-}
-
-export type GetResponseType = {
-    aboutMe: string
-    contacts: GetResponseContactsType
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
-    photos: GetResponsePhotosType
-}
 
 type MapStatePropsType = {
-    profile: any
+    profile: ProfileType
 }
 
 type MapDispatchPropsType = {
-    setUserProfile: (data:any)=> void
+    setUserProfile: (data: ProfileType) => void
 }
 
 type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
@@ -44,10 +19,11 @@ type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
 export class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
-        axios.get<GetResponseType>(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        axios.get<ProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/2`)
             .then((res) => {
+                console.log(res)
                 this.props.setUserProfile(res.data)
-                console.log(res.data)
+
             });
     }
 
@@ -58,9 +34,9 @@ export class ProfileContainer extends React.Component<ProfileContainerPropsType>
     }
 }
 
-const mapStateToProps = (state: RootStateReduxType): any => ({
+const mapStateToProps = (state: RootStateReduxType): { profile: ProfileType } => ({
     profile: state.profilePage.profile
 })
 
-export const ProfileCont = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>
 (mapStateToProps, {setUserProfile})(ProfileContainer)

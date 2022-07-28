@@ -7,7 +7,6 @@ import {
     toggleIsFetching,
     unfollow
 } from "./users-reducer";
-import {GetResponseType} from "../components/Profile/ProfileContainer";
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
@@ -26,37 +25,9 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof setUserProfile>
 
 
-
-type GetResponseContactsType = {
-    facebook: string
-    website?: null
-    vk: string
-    twitter: string
-    instagram: string
-    youtube?: null
-    github: string
-    mainLink?: null
+export type ResponseGenericType<T = {}> = {
+    data: T
 }
-
-type GetResponsePhotosType = {
-    small: string
-    large: string
-}
-
-type ProfileType = {
-    aboutMe: string
-    contacts: GetResponseContactsType
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
-    photos: GetResponsePhotosType
-}
-
-
-
-
-
 
 export type PostsType = {
     id: number
@@ -64,13 +35,65 @@ export type PostsType = {
     likesCount: number
 }
 
-let initialState = {
+type ContactsType = {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
+}
+
+type PhotosType = {
+    small?: string
+    large?: string
+}
+
+export type ProfileType = {
+    aboutMe: string
+    contacts: ContactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: PhotosType
+}
+
+export type ProfilePageType = {
+    posts: PostsType[]
+    profile: ProfileType
+    newPostText: string
+}
+
+let initialState: ProfilePageType = {
     posts: [
         {id: 1, message: 'Hi, how are you', likesCount: 0},
         {id: 2, message: 'My first post', likesCount: 23}
-    ] as Array<PostsType>,
+    ],
     newPostText: '18.03.2022. 22:21',
-    profile: null
+    profile: {
+        userId: 0,
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        fullName: '',
+        contacts: {
+            github: '',
+            vk: '',
+            facebook: '',
+            instagram: '',
+            twitter: '',
+            website: '',
+            youtube: '',
+            mainLink: '',
+        },
+        aboutMe: '',
+        photos: {
+            small: '',
+            large: ''
+        }
+    }
 }
 
 export type InitialStateType = typeof initialState;
@@ -107,11 +130,11 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
     }
 }
 export const addPostActionCreator = () => {
-    return { type: 'ADD-POST' } as const
+    return {type: 'ADD-POST'} as const
 }
 export const changeNewTextActionCreator = (newText: string) => {
     return {type: 'CHANGE-NEW-TEXT', newText: newText} as const
 }
-export const setUserProfile = (profile: any) => {
+export const setUserProfile = (profile: ProfileType) => {
     return {type: SET_USER_PROFILE, profile} as const
 }

@@ -8,7 +8,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Music} from "./components/Music/Music";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
-import {ProfileCont, ProfileContainer} from "./components/Profile/ProfileContainer";
+import ProfileContainer  from "./components/Profile/ProfileContainer";
 
 const App = () => {
 
@@ -20,7 +20,7 @@ const App = () => {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile/*'
-                               element={<ProfileCont/>}/>
+                               element={<ProfileContainer/>}/>
                         <Route path='/dialogs/*'
                                element={<DialogsContainer/>}/>
                         <Route path='/news/*'
