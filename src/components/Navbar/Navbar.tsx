@@ -6,23 +6,24 @@ export const Navbar = () => {
     return (
         <nav className={s.nav}>
             <div>
-                <NavLink to='/Profile' className = { navData => navData.isActive ? s.active : s.item }>Profile</NavLink>
+                <NavLink to='/Profile' >Profile</NavLink>
             </div>
             <div>
-                <NavLink to='/Dialogs' className = { navData => navData.isActive ? s.active : s.item }>Messages</NavLink>
+                <NavLink to='/Dialogs' >Messages</NavLink>
             </div>
             <div>
-                <NavLink to='/Users' className = { navData => navData.isActive ? s.active : s.item }>Users</NavLink>
+                <NavLink to='/Users' >Users</NavLink>
             </div>
             <div>
-                <NavLink to='/News' className = { navData => navData.isActive ? s.active : s.item }>News</NavLink>
+                <NavLink to='/News' >News</NavLink>
             </div>
             <div>
-                <NavLink to='/Music' className = { navData => navData.isActive ? s.active : s.item }>Music</NavLink>
+                <NavLink to='/Music' >Music</NavLink>
             </div>
             <div>
-                <NavLink to='/Settings' className = { navData => navData.isActive ? s.active : s.item }>Settings</NavLink>
+                <NavLink to='/Settings' >Settings</NavLink>
             </div>
         </nav>
     );
 }
+/*<NavLink to='/Settings' className = { navData => navData.isActive ? s.active : s.item }>Settings</NavLink>*/

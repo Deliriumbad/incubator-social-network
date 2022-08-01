@@ -19,4 +19,7 @@ export type RootStateReduxType = ReturnType<typeof reducers>
 // типизация store всего приложения
 export type RootStoreType = typeof store;
 
+// @ts-ignore
+window.store = store
+
 
