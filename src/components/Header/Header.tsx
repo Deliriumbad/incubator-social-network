@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 import {HeaderContainerPropsType} from "./HeaderContainer";
 
 export const Header = (props: HeaderContainerPropsType) => {
-debugger
+
     return (
 
         <header className={s.header}>
