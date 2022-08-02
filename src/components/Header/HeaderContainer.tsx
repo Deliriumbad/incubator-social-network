@@ -5,20 +5,7 @@ import {connect} from "react-redux";
 import {AuthMeDataType, setAuthUserData} from "../../redux/auth-reducer";
 import {RootStateReduxType} from "../../redux/redux-store";
 
-
-type AuthMeMessagesType = {
-    messages: Array<string>
-}
-
-type AuthMeFieldsErrorsType = {
-    fieldsErrors: Array<string>
-}
-
 type MapStatePropsType = {
-    // data: AuthMeDataType
-    // messages: AuthMeMessagesType,
-    // fieldsErrors: AuthMeFieldsErrorsType,
-    // resultCode:number
     isAuth: boolean
     login: string
 }
@@ -26,7 +13,6 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
     setAuthUserData: (data: AuthMeDataType) => void
 }
-
 export type HeaderContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
 export class HeaderContainer extends React.Component<HeaderContainerPropsType> {
@@ -36,9 +22,8 @@ export class HeaderContainer extends React.Component<HeaderContainerPropsType> {
         })
             .then((res) => {
                 if (res.data.resultCode === 0) {
-                    this.props.setAuthUserData(res.data.data.login)
+                    this.props.setAuthUserData(res.data.data)
                 }
-                console.log(res)
             });
     }
 
@@ -48,8 +33,9 @@ export class HeaderContainer extends React.Component<HeaderContainerPropsType> {
 }
 
 const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => ({
-    isAuth: state.auth.isAuth,
-    login: state.auth.login
-})
+        isAuth: state.auth.isAuth,
+        login: state.auth.login
+    })
+
 export default connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>
 (mapStateToProps, {setAuthUserData})(HeaderContainer)
