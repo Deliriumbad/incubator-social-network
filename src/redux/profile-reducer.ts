@@ -7,6 +7,7 @@ import {
     toggleIsFetching,
     unfollow
 } from "./users-reducer";
+import {setAuthUserData} from "./auth-reducer";
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
@@ -23,6 +24,7 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setAuthUserData>
 
 
 export type ResponseGenericType<T = {}> = {

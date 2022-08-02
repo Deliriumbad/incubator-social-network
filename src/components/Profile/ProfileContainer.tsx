@@ -30,7 +30,6 @@ export class ProfileContainer extends React.Component<PropsType> {
         }
         axios.get<ProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/`+userId)
             .then((res) => {
-                console.log(res)
                 this.props.setUserProfile(res.data)
             });
         console.log(userId)
