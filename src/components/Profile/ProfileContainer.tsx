@@ -32,7 +32,6 @@ export class ProfileContainer extends React.Component<PropsType> {
             .then((res) => {
                 this.props.setUserProfile(res.data)
             });
-        console.log(userId)
     }
 
     render() {
