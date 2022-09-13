@@ -3,7 +3,7 @@ import {
     follow,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers,
+    setUsers, toggleFollowingProgress,
     toggleIsFetching,
     unfollow
 } from "./users-reducer";
@@ -25,6 +25,7 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof toggleFollowingProgress>
 
 
 export type ResponseGenericType<T = {}> = {

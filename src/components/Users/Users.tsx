@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/men.png";
-import {UserType} from "../../redux/users-reducer";
+import {toggleFollowingProgress, UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 
@@ -13,6 +13,8 @@ export type UsersPropsType = {
     unfollow: (userId: number) => void
     follow: (userId: number) => void
     onPageChanged: (userId: number) => void
+    toggleFollowingProgress: (isFetching: boolean) => void
+    followingInProgress: boolean
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
@@ -47,7 +49,8 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                   </div>
                   <div>
                       {u.followed
-                          ? <button onClick={() => {
+                          ? <button disabled={props.followingInProgress} onClick={() => {
+                              props.toggleFollowingProgress(true)
                               axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,  {
                                   withCredentials: true,
                                   headers: {
@@ -58,10 +61,12 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                       if (res.data.resultCode === 0) {
                                           props.unfollow(u.id)
                                       }
+                                      props.toggleFollowingProgress(false)
                                   });
                           }}>Unfollow</button>
 
-                          : <button onClick={() => {
+                          : <button disabled={props.followingInProgress} onClick={() => {
+                              props.toggleFollowingProgress(true)
                               axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                   withCredentials: true,
                                   headers: {
@@ -72,6 +77,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                       if (res.data.resultCode === 0) {
                                           props.follow(u.id)
                                       }
+                                      props.toggleFollowingProgress(false)
                                   });
                           }}>Follow</button>
                       }

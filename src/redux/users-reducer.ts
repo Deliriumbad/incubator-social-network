@@ -6,6 +6,7 @@ const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 export type PhotosType = {
     small?: string
@@ -26,7 +27,8 @@ const initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: true,
+    followingInProgress: false
 }
 
 export type InitialStateType = typeof initialState
@@ -61,6 +63,10 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             return {...state, isFetching: action.isFetching}
         }
 
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+            return {...state, followingInProgress: action.isFetching}
+        }
+
         default:
             return state;
     }
@@ -76,3 +82,5 @@ export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE,
 export const setTotalUsersCount = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount}) as const;
 
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching}) as const;
+
+export const toggleFollowingProgress = (isFetching: boolean) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching}) as const;
