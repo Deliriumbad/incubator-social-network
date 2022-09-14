@@ -4,6 +4,7 @@ import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {RootStateReduxType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 type MapStatePropsType = {
@@ -34,4 +35,11 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-export const DialogsContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>(mapStateToProps, mapDispatchToProps)(Dialogs);
+const AuthRedirectComponent = withAuthRedirect(Dialogs)
+    /*(props:any) => {
+    if(!props.isAuth) return <Redirect to={'/login'} />
+    return <Dialogs {...props} />
+}*/
+
+export const DialogsContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>
+(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);

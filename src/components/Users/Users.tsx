@@ -16,7 +16,6 @@ export type UsersPropsType = {
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
-
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     const pages = []
 
