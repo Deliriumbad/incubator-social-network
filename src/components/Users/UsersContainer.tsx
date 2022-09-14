@@ -1,19 +1,9 @@
 import React from "react";
 import {RootStateReduxType} from "../../redux/redux-store";
-import {
-    follow, getUsersTC,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers, toggleFollowingProgress,
-    toggleIsFetching,
-    unfollow,
-    UserType
-} from "../../redux/users-reducer";
+import {follow, getUsers, unfollow, UserType} from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
-import {usersAPI} from "../../api/api";
-import {Dispatch} from "redux";
 
 type MapStatePropsType = {
     users: Array<UserType>
@@ -27,11 +17,6 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setUsers: (users: UserType[]) => void
-    setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (totalUsersCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
 
@@ -96,8 +81,6 @@ export class UsersAPIContainer extends React.Component<UsersAPIContainerPropsTyp
 
     onPageChanged = (pageNumber: number) => {
         this.props.getUsers(pageNumber, this.props.pageSize)
-
-
         /* this.props.setCurrentPage(pageNumber);
         this.props.toggleIsFetching(true)
 
@@ -118,7 +101,6 @@ export class UsersAPIContainer extends React.Component<UsersAPIContainerPropsTyp
                    unfollow={this.props.unfollow}
                    follow={this.props.follow}
                    onPageChanged={this.onPageChanged}
-                   toggleFollowingProgress={this.props.toggleFollowingProgress}
                    followingInProgress={this.props.followingInProgress}
             />
         </>
@@ -126,6 +108,4 @@ export class UsersAPIContainer extends React.Component<UsersAPIContainerPropsTyp
 }
 
 export const UsersContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>
-(mapStateToProps, {follow, unfollow, setUsers,
-    setCurrentPage, setTotalUsersCount, toggleIsFetching,
-    toggleFollowingProgress, getUsers: getUsersTC})(UsersAPIContainer)
+(mapStateToProps, {follow, unfollow, getUsers})(UsersAPIContainer)
