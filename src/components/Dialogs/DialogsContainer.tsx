@@ -8,6 +8,7 @@ import {Dispatch} from "redux";
 
 type MapStatePropsType = {
     state: RootStateReduxType
+    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -17,7 +18,8 @@ type MapDispatchPropsType = {
 
 const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
     return {
-        state: state
+        state: state,
+        isAuth: state.auth.isAuth
     }
 }
 
