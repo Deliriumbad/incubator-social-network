@@ -1,5 +1,6 @@
 import axios from "axios";
 import {GetResponseType} from "../components/Users/UsersContainer";
+import {ProfileType} from "../redux/profile-reducer";
 
 const instance = axios.create({
     withCredentials: true,
@@ -20,5 +21,14 @@ export const usersAPI = {
     },
     unfollow(userId: number) {
         return instance.delete(`follow/${userId}`)
+    },
+    getProfile(userId: string) {
+        return instance.get<ProfileType>(`profile/`+userId)
+    }
+}
+
+export const authAPI = {
+    me() {
+        return instance.get(`auth/me`)
     }
 }

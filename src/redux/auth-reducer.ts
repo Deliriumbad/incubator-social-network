@@ -1,4 +1,6 @@
 import {ActionsTypes} from "./profile-reducer";
+import {Dispatch} from "redux";
+import {authAPI} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -32,4 +34,13 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 }
 export const setAuthUserData = (data:AuthMeDataType) =>
     ({type: SET_USER_DATA, data}) as const;
+
+export const getAuthUserData = () => (dispatch: Dispatch) => {
+    authAPI.me()
+        .then((res) => {
+            if (res.data.resultCode === 0) {
+                dispatch(setAuthUserData(res.data.data))
+            }
+        });
+}
 
