@@ -28,6 +28,7 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof toggleFollowingProgress>
 
 
+
 export type ResponseGenericType<T = {}> = {
     data: T
 }
