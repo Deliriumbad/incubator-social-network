@@ -9,7 +9,7 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type MapStatePropsType = {
     state: RootStateReduxType
-    isAuth: boolean
+    isAuth?: boolean
 }
 
 type MapDispatchPropsType = {
@@ -20,7 +20,7 @@ type MapDispatchPropsType = {
 const mapStateToProps = (state: RootStateReduxType): MapStatePropsType => {
     return {
         state: state,
-        isAuth: state.auth.isAuth
+       /* isAuth: state.auth.isAuth*/
     }
 }
 

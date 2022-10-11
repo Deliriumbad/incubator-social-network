@@ -65,7 +65,7 @@ export type GetResponseType = {
     }
 }*/
 
-export class UsersAPIContainer extends React.Component<UsersAPIContainerPropsType> {
+class UsersAPIContainer extends React.Component<UsersAPIContainerPropsType> {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
