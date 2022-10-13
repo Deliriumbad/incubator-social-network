@@ -62,5 +62,5 @@ export default compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateReduxType>
     (mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus}),
     withRouter,
-    //withAuthRedirect-иначе при обновлении сразу попаданем на логинизацию
+    //withAuthRedirect-иначе при обновлении сразу попадаем на логинизацию
 )(ProfileContainer)
