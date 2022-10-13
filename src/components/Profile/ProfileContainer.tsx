@@ -31,7 +31,7 @@ export class ProfileContainer extends React.Component<PropsType> {
 
         let userId = Number(this.props.match.params.userId)
         if (!userId) {
-            userId = 2
+            userId = 24652
         }
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
