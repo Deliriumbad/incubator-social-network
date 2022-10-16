@@ -12,12 +12,10 @@ import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST'
-const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 
 export type ActionsTypes = ReturnType<typeof addPostActionCreator>
-    | ReturnType<typeof changeNewTextActionCreator>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
@@ -29,7 +27,6 @@ export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof toggleFollowingProgress>
     | ReturnType<typeof setStatus>
-
 
 
 export type ResponseGenericType<T = {}> = {
@@ -71,7 +68,6 @@ export type ProfileType = {
 export type ProfilePageType = {
     posts: PostsType[]
     profile: ProfileType
-    newPostText: string
     status: string
 }
 
@@ -80,7 +76,6 @@ let initialState: ProfilePageType = {
         {id: 1, message: 'Hi, how are you', likesCount: 0},
         {id: 2, message: 'My first post', likesCount: 23}
     ],
-    newPostText: '18.03.2022. 22:21',
     profile: {
         userId: 0,
         lookingForAJob: false,
@@ -112,20 +107,13 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
         case ADD_POST: {
             const newPost = {
                 id: new Date().getTime(),
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0
             }
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: '',
             }
-        }
-        case CHANGE_NEW_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText,
-            };
         }
         case SET_USER_PROFILE: {
             return {
@@ -143,12 +131,10 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             return state;
     }
 }
-export const addPostActionCreator = () => {
-    return {type: 'ADD-POST'} as const
+export const addPostActionCreator = (newPostText: string) => {
+    return {type: 'ADD-POST', newPostText} as const
 }
-export const changeNewTextActionCreator = (newText: string) => {
-    return {type: 'CHANGE-NEW-TEXT', newText: newText} as const
-}
+
 export const setUserProfile = (profile: ProfileType) => {
     return {type: SET_USER_PROFILE, profile} as const
 }
@@ -174,7 +160,7 @@ export const getUserStatus = (userId: number) => (dispatch: Dispatch) => {
 export const updateUserStatus = (status: string) => (dispatch: Dispatch) => {
     profileAPI.updateStatus(status)
         .then((res) => {
-            if(res.data.resultCode === 0){
+            if (res.data.resultCode === 0) {
                 dispatch(setStatus(status))
             }
         });
