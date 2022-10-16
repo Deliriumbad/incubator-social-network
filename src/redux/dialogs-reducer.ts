@@ -1,6 +1,5 @@
 import {ActionsTypes} from "./profile-reducer";
 
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
 export type DialogsType = {
@@ -16,9 +15,7 @@ export type MessagesType = {
 export type MessagesPageType = {
     messages: Array<MessagesType>
     dialogs: Array<DialogsType>
-    newMessageBody: string
 }
-
 
 let initialState = {
     dialogs: [
@@ -37,23 +34,18 @@ let initialState = {
         {id: 5, message: '3:49'},
         {id: 6, message: 'good luck'},
     ] as Array<MessagesType>,
-    newMessageBody: '',
+
 }
 
 export type InitialStateType = typeof initialState;
 
 export const dialogsReducer = (state: MessagesPageType = initialState, action: ActionsTypes): MessagesPageType => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY: {
-            return  {
-                ...state, newMessageBody: action.body
-            };
-        }
+
         case SEND_MESSAGE: {
-            const body = state.newMessageBody;
+            const body = action.newMessageBody;
             return {
                 ...state,
-                newMessageBody: '',
                 messages: [...state.messages, {id: 7, message: body}]
             };
         }
@@ -62,10 +54,4 @@ export const dialogsReducer = (state: MessagesPageType = initialState, action: A
     }
 }
 
-export const updateNewMessageBodyCreator = (body: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-BODY',
-        body: body
-    } as const
-}
-export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'} as const)
+export const sendMessageCreator = (newMessageBody: string) => ({type: 'SEND-MESSAGE', newMessageBody} as const)

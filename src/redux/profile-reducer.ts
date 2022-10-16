@@ -1,4 +1,4 @@
-import {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+import {sendMessageCreator} from "./dialogs-reducer";
 import {
     followSuccess,
     setCurrentPage,
@@ -18,7 +18,6 @@ const SET_STATUS = 'SET_STATUS'
 
 export type ActionsTypes = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof changeNewTextActionCreator>
-    | ReturnType<typeof updateNewMessageBodyCreator>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
